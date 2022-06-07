@@ -1,6 +1,9 @@
 # FruitDetection
 Computer Vision | Agile | Object Detection
 
+You need python 3.7.6 and the right dependencies to run this app. 
+Please foloow this following instructions : 
+
 Run command : 
 
 run : conda create --name <NewEnvName> python==3.7.6 
