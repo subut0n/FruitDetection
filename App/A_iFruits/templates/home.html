@@ -9,12 +9,13 @@
 {% endblock %}
 
 {% block content %}
-    <h1> Accueil</h1>
-    
-    <h2>Image to predict</h2>
-    <img class="img-predict" src="{{url_for('static', filename='images/src/image2.jpg')}}" />
+    <h1>Home</h1>
+    <div class="img-predict">
+        <h2>Image to predict</h2>
+        <img class="predict-img" src="{{url_for('static', filename='images/src/image2.jpg')}}" />
 
-    <h2>Predicted image before our transfert learning </h2>
-    <img class="img-predict" src="{{url_for('static', filename='images/dest/imagehome.jpg')}}" />
+        <h2>Predicted image before our transfert learning </h2>
+        <img class="predict-img" src="{{url_for('static', filename='images/dest/imagehome.jpg')}}" />
+    </div>
 
 {% endblock %}

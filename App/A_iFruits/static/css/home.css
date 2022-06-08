@@ -1,31 +1,48 @@
 h1 {
+    color:darkslategrey;
+    font-family: 'Roboto';
     text-align:center;
     margin-bottom: 20px;
 }
 
-.colorBlue{
-    background-color:#424580;}
+h2 {
+    font-family: 'Roboto';
+    display: block;
+    text-align: left;
+    padding-left: 5%;
+}
 
+.colorBlue{
+    background-color:#424580;
+}
+
+.colorGreen{
+    background-color: #00561B; 
+}
 
 nav ul{
     margin:0;
     padding:0;
     display:flex;
+
 }
 nav li{
     list-style-type:none;
     width:33.3%;
     text-align:center;
+
 }
 nav a{
+    font-family: Roboto;
+    color:white; 
     display:block;
-    color:white;
     padding:20px 30px;
     text-transform:uppercase;
     text-decoration:none;
 }
 nav li:hover a{
     padding: 15px 30px 20px 30px;
+    color:pink;
 }
 
 .rowFlex {
@@ -36,15 +53,19 @@ nav li:hover a{
 
 .img-predict {
     display: flex;
+    /* justify-content: center; */
+    /* align-items: center;  */
     flex-direction: column;
     margin: 5px;
     padding: 5px;
     width: 50%;
     height: 50%;
-    border: 2px solid grey;
+    /* border: 2px solid grey; */
 }
 
 .img-upload {
+    display: flex;
+    align-items: center;
     margin: 5px;
     padding: 5px;
     width: 50%;
