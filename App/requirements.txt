@@ -6,6 +6,7 @@ scipy==1.4.1
 h5py==2.10.0 
 matplotlib==3.3.2 
 keras-resnet==0.2.0
+protobuf==3.20
 flask 
 opencv-python 
 imageai

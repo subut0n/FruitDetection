@@ -27,7 +27,6 @@ def form_upload():
 
         if form.file.data :
 
-
             print(form.file.data)
             photo = form.file.data
             f = secure_filename(photo.filename)
@@ -84,6 +83,8 @@ def video_feed():
 @app.route('/live')
 def predict_live():
     video = cv2.VideoCapture(0) 
+
+        
     
     # execution_path = os.getcwd()
     # detector = VideoObjectDetection()
@@ -98,6 +99,7 @@ def predict_live():
     #                                 , frames_per_second=29, log_progress=True, minimum_percentage_probability=40)
     
     # print(video_path)
+    flash('Suceess', category='success')
     return render_template("live.html", video=video)
 
 
