@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     {% block css %}
     {% endblock %}
     <title>
@@ -12,16 +13,30 @@
     </title>
 </head>
 <body>
+    
+    <nav class="colorBlue">
+        <ul>
+            <li class="menuInfo">
+                <a href="{{url_for('homepage')}}">Accueil</a>
+            </li>
+            <li class="menuExperience">
+                <a href="{{url_for('form_upload')}}">Upload prediction</a>
+            </li>
+            <li class="menuContact">
+                <a href="{{url_for('predict_live')}}">Live prediction</a>
+            </li>
+        </ul>
+    </nav>
+    
     {% block content %}
+
+
+
+
+
     {% endblock %}
 
     {% block script %}
     {% endblock %}
-
-    <label for="photo"> Choose your pîcture here </label>
-    <input type="file"
-    id="photo" name="photo"
-    accept="image/png, image/jpeg">
-
 </body>
 </html>

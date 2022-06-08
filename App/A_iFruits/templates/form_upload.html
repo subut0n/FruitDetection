@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block css %}
+    <link rel="stylesheet" href="../static/css/home.css">
+{% endblock %}
+
+{% block title %} 
+    Homepage
+{% endblock %}
+
+{% block content %}
+    <h1> Make your prediction </h1>
+
+
+
+
+        <label for="file"> Load your picture below </label> 
+        <br>
+
+        <form method="POST" enctype=multipart/form-data>
+            {{ form.hidden_tag() }}
+            {{form.file.label() }}
+            {{form.file }}
+
+
+            {{form.submit.label() }}
+            {{form.submit }}
+
+        </form>
+
+    {% if form.file.data %}
+    <div class="rowFlex">
+
+            <img class="img-upload" src="{{url_for('static', filename='/images/dest/predict_upload.jpg')}}" />
+
+            <p>
+                Details of predictions : <br><br>
+                {% for text in description %}
+                
+                    {{text}} <br>
+                
+                {% endfor %}
+            </p>
+
+
+
+    </div>
+    {% endif %}
+
+
+
+
+{% endblock %}
