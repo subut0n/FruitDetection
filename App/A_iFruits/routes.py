@@ -16,8 +16,8 @@ def homepage():
 
 # -------------  Page upload d'une image pour detection
 
-@app.route('/upload', methods=['POST','GET'])
-def form_upload():
+@app.route('/upload-photo', methods=['POST','GET'])
+def upload_photo():
 
 
     form = uploadFile()
@@ -44,7 +44,7 @@ def form_upload():
 
             detections = detector.detectObjectsFromImage(input_image=os.path.join(
                 execution_path , "A_iFruits/static/images/src",  f
-            ), output_image_path=os.path.join(execution_path , "A_iFruits/static/images/dest/predict_upload.jpg"))
+            ), output_image_path=os.path.join(execution_path , "A_iFruits/static/images/dest/predict_upload_photo.jpg"))
 
 
             
@@ -56,7 +56,47 @@ def form_upload():
             flash('Please load an image', category="error" )
 
 
-    return render_template("form_upload.html", form=form, description=description)
+    return render_template("upload_photo.html", form=form, description=description)
+
+# -------------  Page upload d'une video pour detection
+
+@app.route('/upload-video', methods=['POST','GET'])
+def upload_video():
+
+    form = uploadFile()
+    execution_path = os.getcwd()
+    description = []
+    if form.validate_on_submit():
+
+        if form.file.data :
+
+            print(form.file.data)
+            photo = form.file.data
+            f = secure_filename(photo.filename)
+            print(f)
+            photo.save(os.path.join(
+                execution_path , "A_iFruits/static/images/dest",  f
+            ))
+
+            
+            print(form.file.__dict__)
+            
+            detector = ObjectDetection()
+            detector.setModelTypeAsRetinaNet()
+            detector.setModelPath( os.path.join(execution_path , "A_iFruits/static/models_files/resnet50_coco_best_v2.1.0.h5"))
+            detector.loadModel()
+
+            video_path = detector.detectObjectsFromVideo(camera_input=os.path.join(
+                execution_path , "A_iFruits/static/images/src",  f), output_file_path=os.path.join(execution_path, "A_iFruits/static/camera_detected_1")
+                                            , frames_per_second=29, log_progress=True, minimum_percentage_probability=40)
+
+            
+            print(video_path)
+            flash('File predicted', category='success')
+        else:
+            flash('Please load an image', category="error" )
+
+    return render_template("upload_video.html", form=form, description=description)
 
 
 
