@@ -1,8 +1,32 @@
+<<<<<<< HEAD
 h1 {
     color:darkslategrey;
     font-family: 'Roboto';
     text-align:center;
     margin-bottom: 20px;
+=======
+.img-predict {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    padding: 5px;
+    width: 50%;
+    height: 50%;
+    border: 2px solid grey;
+}
+
+.img-upload {
+    margin: 5px;
+    padding: 5px;
+    width: 50%;
+    height: 50%;
+    border: 1px solid grey;
+    min-width: 300px;
+    max-width: 750px;
+
+    min-height: 250px;
+    max-height: 420px;
+>>>>>>> a86f483df3d0403e0dcef77f38ba8477b5acf093
 }
 
 h2 {
@@ -51,6 +75,7 @@ nav li:hover a{
     margin: 10px;
 }
 
+<<<<<<< HEAD
 .img-predict {
     display: flex;
     /* justify-content: center; */
@@ -77,3 +102,5 @@ nav li:hover a{
     min-height: 250px;
     max-height: 420px;
 }
+=======
+>>>>>>> a86f483df3d0403e0dcef77f38ba8477b5acf093
