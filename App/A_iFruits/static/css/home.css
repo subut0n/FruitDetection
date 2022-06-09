@@ -59,9 +59,7 @@ nav a{
 
 .navbar{
     background-color: #00561B; 
-    border: 3px solid black ;
-    box-shadow: 10px;
-    border-radius: 55%;
+    border-radius: 5%;
 }
 
 

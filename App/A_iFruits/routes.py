@@ -78,14 +78,14 @@ def upload_video():
             
             print(form.file.__dict__)
             
-            detector = VideoObjectDetection()
-            detector.setModelTypeAsRetinaNet()
-            detector.setModelPath( os.path.join(execution_path , "A_iFruits/static/models_files/resnet50_coco_best_v2.1.0.h5"))
-            detector.loadModel()
+            # detector = VideoObjectDetection()
+            # detector.setModelTypeAsRetinaNet()
+            # detector.setModelPath( os.path.join(execution_path , "A_iFruits/static/models_files/resnet50_coco_best_v2.1.0.h5"))
+            # detector.loadModel()
 
-            video_path = detector.detectObjectsFromVideo(camera_input=os.path.join(
-                execution_path , "A_iFruits/static/images/dest",  'file_upload.avi'), output_file_path=os.path.join(execution_path, "A_iFruits/static/images/dest/camera_detected_1")
-                                            , frames_per_second=29, log_progress=True, minimum_percentage_probability=40)
+            # video_path = detector.detectObjectsFromVideo(camera_input=os.path.join(
+            #     execution_path , "A_iFruits/static/images/dest",  'file_upload.avi'), output_file_path=os.path.join(execution_path, "A_iFruits/static/images/dest/camera_detected_1")
+            #                                 , frames_per_second=1, log_progress=True, minimum_percentage_probability=40)
 
             
             flash('File predicted', category='success')
@@ -126,8 +126,8 @@ def video_prediction():
 @app.route('/live')
 def predict_live():
 
-    # video = cv2.VideoCapture(0) 
-    # execution_path = os.getcwd()
+    video = cv2.VideoCapture(0) 
+    execution_path = os.getcwd()
     # detector = VideoObjectDetection()
     # detector.setModelTypeAsRetinaNet()
     # detector.setModelPath( os.path.join(execution_path , "A_iFruits/static/models_files/resnet50_coco_best_v2.1.0.h5"))
@@ -135,7 +135,7 @@ def predict_live():
 
     # video_path = detector.detectObjectsFromVideo(camera_input=video,
     #                                 output_file_path=os.path.join(execution_path, "A_iFruits/static/images/dest/camera_detected_1")
-    #                                 , frames_per_second=1, log_progress=True, minimum_percentage_probability=40)
+    #                                 , frames_per_second=29, log_progress=True, minimum_percentage_probability=40)
     flash('Suceess', category='success')
     return render_template("live.html")
 
