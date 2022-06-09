@@ -35,15 +35,11 @@
 
 
             <div >
-                <img class="img-upload" src="{{url_for('static', filename='/images/dest/predict_upload_file.jpg')}}" />
+                <img class="img-upload" src="{{url_for('static', filename='/images/src/upload/file_upload.jpg')}}" />
             </div>
 
             <div >
-                <p>Details of predictions : <br><br>
-                    {% for text in description %}
-                        {{text[0]}} {{text[1]}} {{text[2] | round(1) }}% 
-                        <br>
-                    {% endfor %}
+                <p>Details of predictions : {{ description }}<br><br>
                 </p>
             </div>
         </div>
