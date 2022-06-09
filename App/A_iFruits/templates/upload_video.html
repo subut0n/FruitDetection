@@ -9,12 +9,12 @@
 {% endblock %}
 
 {% block content %}
-    <h1> Make your prediction </h1>
+    <h1> Make your video prediction  </h1>
 
 
 
-    <div>
-        <label for="file"> Load your picture below </label> 
+    <div class="form">
+        <label for="file"> Load your picture below : </label> 
 
         <form method="POST" enctype=multipart/form-data>
             {{ form.hidden_tag() }}
@@ -30,15 +30,9 @@
 
 
     {% if form.file.data %}
-    <div class="rowFlex">
-            <img class="img-upload" src="{{url_for('static', filename='/images/dest/predict_upload.jpg')}}" />
-            <p>
-                Details of predictions : <br><br>
-                {% for text in description %}
-                    {{text[0]}} {{text[1]}} {{text[2] | round(1) }}% 
-                    <br>
-                {% endfor %}
-            </p>
+    <div class="camera">
+        <img src="{{url_for('video_prediction')}}">
+
     </div>
     {% endif %}
 

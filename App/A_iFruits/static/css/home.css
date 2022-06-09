@@ -1,106 +1,192 @@
-<<<<<<< HEAD
+body {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 17px;
+    box-sizing: border-box;
+    padding: 2%;
+    background-color: beige;
+    border: 2px solid orange;
+    border-radius: 5%;
+
+}
+
 h1 {
+    padding: 2% 0% 2% 0%;
     color:darkslategrey;
     font-family: 'Roboto';
     text-align:center;
     margin-bottom: 20px;
-=======
-.img-predict {
-    display: flex;
-    flex-direction: column;
-    margin: 5px;
-    padding: 5px;
-    width: 50%;
-    height: 50%;
-    border: 2px solid grey;
-}
-
-.img-upload {
-    margin: 5px;
-    padding: 5px;
-    width: 50%;
-    height: 50%;
-    border: 1px solid grey;
-    min-width: 300px;
-    max-width: 750px;
-
-    min-height: 250px;
-    max-height: 420px;
->>>>>>> a86f483df3d0403e0dcef77f38ba8477b5acf093
+    border-bottom: 1px solid green;
 }
 
 h2 {
+    padding: 2% 0% 2% 0%;
     font-family: 'Roboto';
     display: block;
-    text-align: left;
+    text-align: center;
     padding-left: 5%;
-}
-
-.colorBlue{
-    background-color:#424580;
-}
-
-.colorGreen{
-    background-color: #00561B; 
 }
 
 nav ul{
     margin:0;
     padding:0;
     display:flex;
-
 }
+
 nav li{
     list-style-type:none;
-    width:33.3%;
+    width:25%;
     text-align:center;
-
+    justify-content: center;
 }
+
+nav li:hover a{
+    padding: 15px 30px 20px 30px;
+    color:pink;
+}
+
 nav a{
+    box-sizing: inherit;
+    justify-content: center;
+    align-items: center;
     font-family: Roboto;
     color:white; 
     display:block;
     padding:20px 30px;
     text-transform:uppercase;
     text-decoration:none;
-}
-nav li:hover a{
-    padding: 15px 30px 20px 30px;
-    color:pink;
+    text-shadow: 0px 2px #ff0000;
 }
 
-.rowFlex {
+.navbar{
+    background-color: #00561B; 
+    border: 3px solid black ;
+    box-shadow: 10px;
+    border-radius: 55%;
+}
+
+
+.colum-center {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
     margin: 10px;
 }
 
-<<<<<<< HEAD
-.img-predict {
+.row-center {
     display: flex;
-    /* justify-content: center; */
-    /* align-items: center;  */
+    flex-direction: row;
+    justify-content: center;
+    margin: 10px;
+    padding-bottom: 3%;
+    
+}
+
+.row-center div:nth-child(2) {
+    align-self:flex-start;
+    border: 1px dashed red;
+    margin: 2%;
+    padding: 3%;
+    border-radius: 5%;
+}
+
+.columnFlex {
+    display : flex ; 
+    flex-direction: row ;
+    align-items: center;
+    flex-wrap : nowrap ;
+}
+
+
+.img-home {
+    box-sizing: inherit;
+    display: flex;
     flex-direction: column;
     margin: 5px;
-    padding: 5px;
-    width: 50%;
+    width: 100%;
     height: 50%;
-    /* border: 2px solid grey; */
+    border: 2px solid grey;
 }
 
 .img-upload {
-    display: flex;
-    align-items: center;
+    box-sizing: border-box;
     margin: 5px;
     padding: 5px;
-    width: 50%;
-    height: 50%;
-    border: 1px solid grey;
-    min-width: 300px;
-    max-width: 750px;
+    width: 100%;
 
-    min-height: 250px;
-    max-height: 420px;
 }
-=======
->>>>>>> a86f483df3d0403e0dcef77f38ba8477b5acf093
+
+.camera {
+    box-sizing: inherit;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.camera img {
+    box-sizing: inherit;
+    width: 65%;
+}
+
+
+.img-camera {
+    display: block;
+    align-content: center;
+    align-self: center;
+}
+
+
+.form {
+    margin: 2%;
+}
+
+.form label {
+    align-self: space-around;
+}
+
+
+@media (max-width: 760px){
+
+    .row-center div:nth-child(2) {
+        align-self:center;
+        border: 1px dashed red;
+        margin: 2%;
+        padding: 3%;
+        border-radius: 5%;
+    }
+
+    .row-center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        align-content: space-around;
+        justify-content: space-around;
+        margin: 10px;
+        padding-bottom: 3%;
+        
+    }
+    
+}
+
+@media (max-width: 760px){
+
+    .columnFlex {
+        display : flex ; 
+        flex-direction: row wrap ;
+        align-items: center;
+        flex-wrap : wrap ;
+    }
+
+    body {
+        font-size: 12px;}
+
+}
+
+
+@media (max-width: 380px){
+
+    body {
+        font-size: 8px;}
+
+}

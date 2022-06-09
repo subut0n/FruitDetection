@@ -12,9 +12,12 @@
 {% endblock %}
 
 {% block content %}
-    <h1> Accueil</h1>
+    <h1> AI Fruits in live</h1>
     
+    <div class="camera">
+        <img src="{{url_for('video_live')}}">
 
-    <img src="{{url_for('video_feed')}}">
+    </div>
+
 
 {% endblock %}

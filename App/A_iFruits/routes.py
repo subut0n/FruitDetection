@@ -27,15 +27,13 @@ def upload_photo():
 
         if form.file.data :
 
-            print(form.file.data)
             photo = form.file.data
-            f = secure_filename(photo.filename)
+            # f = secure_filename(photo.filename) # Dont need it
             photo.save(os.path.join(
-                execution_path , "A_iFruits/static/images/dest",  f
+                execution_path , "A_iFruits/static/images/src",  'file_upload.jpg'
             ))
 
             
-            print(form.file.__dict__)
             
             detector = ObjectDetection()
             detector.setModelTypeAsRetinaNet()
@@ -43,8 +41,8 @@ def upload_photo():
             detector.loadModel()
 
             detections = detector.detectObjectsFromImage(input_image=os.path.join(
-                execution_path , "A_iFruits/static/images/src",  f
-            ), output_image_path=os.path.join(execution_path , "A_iFruits/static/images/dest/predict_upload_photo.jpg"))
+                execution_path , "A_iFruits/static/images/src",  'file_upload.jpg'
+            ), output_image_path=os.path.join(execution_path , "A_iFruits/static/images/dest/predict_upload_file.jpg"))
 
 
             
@@ -70,37 +68,32 @@ def upload_video():
 
         if form.file.data :
 
+
             print(form.file.data)
             photo = form.file.data
-            f = secure_filename(photo.filename)
-            print(f)
             photo.save(os.path.join(
-                execution_path , "A_iFruits/static/images/dest",  f
+                execution_path , "A_iFruits/static/images/dest",  'file_upload.avi'
             ))
 
             
             print(form.file.__dict__)
             
-            detector = ObjectDetection()
+            detector = VideoObjectDetection()
             detector.setModelTypeAsRetinaNet()
             detector.setModelPath( os.path.join(execution_path , "A_iFruits/static/models_files/resnet50_coco_best_v2.1.0.h5"))
             detector.loadModel()
 
             video_path = detector.detectObjectsFromVideo(camera_input=os.path.join(
-                execution_path , "A_iFruits/static/images/src",  f), output_file_path=os.path.join(execution_path, "A_iFruits/static/camera_detected_1")
+                execution_path , "A_iFruits/static/images/dest",  'file_upload.avi'), output_file_path=os.path.join(execution_path, "A_iFruits/static/images/dest/camera_detected_1")
                                             , frames_per_second=29, log_progress=True, minimum_percentage_probability=40)
 
             
-            print(video_path)
             flash('File predicted', category='success')
         else:
             flash('Please load an image', category="error" )
 
     return render_template("upload_video.html", form=form, description=description)
-
-
-
-# ------------- Page detection d'objet en temps réel (webcam)
+    
 
 # Fonction generateur de video 
 def gen(video):
@@ -113,34 +106,47 @@ def gen(video):
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
 
-@app.route('/video_feed')
-def video_feed():   
-    video = cv2.VideoCapture(0) 
+
+@app.route('/video_feed2')
+def video_prediction():   
+
+    execution_path = os.getcwd()
+    video_path = os.path.join(execution_path, "A_iFruits/static/images/dest/file_upload.avi")
+    video = cv2.VideoCapture(video_path) 
 
     return Response(gen(video),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
+
+
+# ------------- Page detection d'objet en temps réel (webcam)
+
+
+
 @app.route('/live')
 def predict_live():
-    video = cv2.VideoCapture(0) 
 
-        
-    
+    # video = cv2.VideoCapture(0) 
     # execution_path = os.getcwd()
     # detector = VideoObjectDetection()
     # detector.setModelTypeAsRetinaNet()
     # detector.setModelPath( os.path.join(execution_path , "A_iFruits/static/models_files/resnet50_coco_best_v2.1.0.h5"))
     # detector.loadModel()
 
-    # # -- le video_path creer un fichier .avi (à voir comment le lire) --
-
     # video_path = detector.detectObjectsFromVideo(camera_input=video,
-    #                                 output_file_path=os.path.join(execution_path, "A_iFruits/static/camera_detected_1")
-    #                                 , frames_per_second=29, log_progress=True, minimum_percentage_probability=40)
-    
-    # print(video_path)
+    #                                 output_file_path=os.path.join(execution_path, "A_iFruits/static/images/dest/camera_detected_1")
+    #                                 , frames_per_second=1, log_progress=True, minimum_percentage_probability=40)
     flash('Suceess', category='success')
-    return render_template("live.html", video=video)
+    return render_template("live.html")
 
 
 
+@app.route('/video_feed')
+def video_live():   
+
+    execution_path = os.getcwd()
+    video = cv2.VideoCapture(0)
+    video2 = cv2.VideoCapture(os.path.join(execution_path, "A_iFruits/static/images/dest/camera_detected_1.avi"))
+
+    return Response(gen(video),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
