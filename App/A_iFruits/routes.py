@@ -69,7 +69,6 @@ def upload_photo():
         # else:
         #     flash('Please load an image', category="error" )
 
-
     return render_template("upload_photo.html", form=form, description=description)
 
 # -------------  Page upload d'une video pour detection
