@@ -54,7 +54,7 @@ def upload_photo():
                 directory="App/A_iFruits/static/images/src",
                 target_size=(75, 75)
             )
-            description.append(list_labels[np.argmax(model.predict(img_transform))])
+            description = list_labels[np.argmax(model.predict(img_transform))]
             # print(prediction)
             # detections = detector.detectObjectsFromImage(input_image=os.path.join(
             #     execution_path , "A_iFruits/static/images/src",  'file_upload.jpg'
