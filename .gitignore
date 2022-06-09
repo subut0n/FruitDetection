@@ -1,2 +1,5 @@
 __pycache__
 *.h5
+.vscode
+fruits-360_dataset
+fruits-360-original-size
