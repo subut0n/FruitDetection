@@ -16,21 +16,12 @@
 </head>
 <body>
     
-    <nav class="navbar" >
-        <ul>
-            <li>
-                <a href="{{url_for('homepage')}}">Home</a>
-            </li>
-            <li >
-                <a href="{{url_for('upload_photo')}}">Photo prediction</a>
-            </li>
-            <li>
-                <a href="{{url_for('upload_video')}}">Video prediction</a>
-            </li>
-            <li >
-                <a href="{{url_for('predict_live')}}">Live prediction</a>
-            </li>
-        </ul>
+    <nav class="navMenu" >
+        <a href="{{url_for('homepage')}}">Home</a>
+        <a href="{{url_for('upload_photo')}}">Photo prediction</a>
+        <a href="{{url_for('upload_video')}}">Video prediction</a>
+        <a href="{{url_for('predict_live')}}">Live prediction</a>
+        <div class="dot"></div>
     </nav>
     
     {% block content %}
