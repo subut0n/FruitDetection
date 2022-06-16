@@ -76,6 +76,7 @@ def upload_photo():
             print(os.listdir('A_iFruits/static/images/src/upload/'))  
 
             os.chdir('A_iFruits/static/images/src/upload/')
+            image_np = cv2.cvtColor(image_np, cv2.COLOR_BGR2RGB)
             cv2.imwrite('file_upload.jpg', image_np)
 
             
