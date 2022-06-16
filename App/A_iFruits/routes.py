@@ -2,10 +2,11 @@ from A_iFruits import app
 from flask import render_template, Response , request , redirect, url_for , flash
 import numpy as np
 import tensorflow as tf
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import os
 from .forms import uploadFile
 from werkzeug.utils import secure_filename
+from .prediction import * 
+from tflite_model_maker import object_detector
 
 
 list_labels = [
@@ -43,18 +44,44 @@ def upload_photo():
         if form.file.data :
             photo = form.file.data
             # f = secure_filename(photo.filename) # Dont need it
-            photo.save("App/A_iFruits/static/images/src/upload/file_upload.jpg")
+            photo.save("A_iFruits/static/images/src/upload/file_upload.jpg")
 
-            model = tf.keras.models.load_model("Data/aifruits_model.h5")
-            predicting_img = ImageDataGenerator(
-                preprocessing_function=tf.keras.applications.resnet50.preprocess_input,
-                dtype=tf.float32
+            from PIL import Image
+            
+            INPUT_IMAGE_URL = "http://download.tensorflow.org/example_images/android_figurine.jpg" #@param {type:"string"}
+            DETECTION_THRESHOLD = 0.2 #@param {type:"number"}
+            TFLITE_MODEL_PATH = "A_iFruits/static/models_files/foodex-v2.tflite" #@param {type:"string"}
+
+            #TEMP_FILE = '/tmp/image.png'
+            TEMP_FILE = 'A_iFruits/static/images/src/upload/file_upload.jpg'
+            #!wget -q -O $TEMP_FILE $INPUT_IMAGE_URL
+            image = Image.open(TEMP_FILE).convert('RGB')
+            image.thumbnail((500, 500), Image.ANTIALIAS)
+            image_np = np.asarray(image)
+
+            # Load the TFLite model
+            options = ObjectDetectorOptions(
+                num_threads=4,
+                score_threshold=DETECTION_THRESHOLD,
             )
-            img_transform = predicting_img.flow_from_directory(
-                directory="App/A_iFruits/static/images/src",
-                target_size=(75, 75)
-            )
-            description = list_labels[np.argmax(model.predict(img_transform))]
+            detector = ObjectDetector(model_path=TFLITE_MODEL_PATH, options=options)
+
+            # Run object detection estimation using the model.
+            detections = detector.detect(image_np)
+
+            # Draw keypoints and edges on input image
+            image_np = visualize(image_np, detections)
+
+            print("Before saving image:")  
+            print(os.listdir('A_iFruits/static/images/src/upload/'))  
+
+            os.chdir('A_iFruits/static/images/src/upload/')
+            cv2.imwrite('file_upload.jpg', image_np)
+
+            
+
+            # Show the detection result
+            # Image.fromarray(image_np)
             # print(prediction)
             # detections = detector.detectObjectsFromImage(input_image=os.path.join(
             #     execution_path , "A_iFruits/static/images/src",  'file_upload.jpg'
