@@ -39,8 +39,11 @@
             </div>
 
             <div >
-                <p>Details of predictions : {{ description }}<br><br>
+                <h4>Details of predictions :</h4>
+                {% for text in description %}
+                <p> {{ text }}<br>
                 </p>
+                {% endfor %}
             </div>
         </div>
 

@@ -301,3 +301,22 @@ def visualize(
                 _FONT_SIZE, _TEXT_COLOR, _FONT_THICKNESS)
 
   return image
+
+
+
+def return_class_names ( image: np.ndarray, detections: List[Detection]) :
+
+  result_text = []
+  for detection in detections:
+    # Draw label and score
+    category = detection.categories[0]
+    probability = round(category.score, 2)
+    class_name = category.label
+    
+    text = class_name + ' (' + str(probability) + ')'
+
+    result_text.append(text)
+
+    
+
+  return result_text

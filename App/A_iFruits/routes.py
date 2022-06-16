@@ -1,27 +1,14 @@
 from A_iFruits import app
 from flask import render_template, Response , request , redirect, url_for , flash
 import numpy as np
-import tensorflow as tf
 import os
 from .forms import uploadFile
 from werkzeug.utils import secure_filename
-from .prediction import * 
-from tflite_model_maker import object_detector
+from .prediction import visualize, ObjectDetectorOptions, ObjectDetector, return_class_names
+from PIL import Image
+import cv2
 
 
-list_labels = [
-    "Apple", "Apricot","Avocado","Banana", "Beetroot","Blueberry","Cabbage",
-    "Cactus","Cantaloupe","Caspicum","Carambula","Carrot","Cauliflower","Cherry",
-    "Chestnut","Clementine","Cocos","Corn","Cucumber","Dates","Eggplant","Fig",
-    "Garlic","Ginger","Granadilla","Grape","Grapefruit","Guava","Hazelnut",
-    "Huckleberry","Jalapeno","Kaki","Kiwi","Kohlrabi","Kumquats","Lemon","Limes",
-    "Lychee","Mandarine","Mango","Mangostan","Maracuja","Melon","Mulberry",
-    "Nectarine","Nut","Onion","Orange","Papaya","Passion","Peach","Pear",
-    "Peas","Pepino","Pepper","Physalis","Pineapple","Pitahaya","Plum","Pomegranate",
-    "Pomelo","Potato","Quince","Quince","Raddish","Rambutan","Raspberry","Redcurrant",
-    "Salak","Soybeans","Spinach","Strawberry","Tamarillo","Tangelo","Tomato","Turnip",
-    "Walnut","Watermelon"
-]
 
 # Page d'accueil (Description du produit)
 @app.route('/')
@@ -37,25 +24,21 @@ def upload_photo():
 
 
     form = uploadFile()
-    execution_path = os.getcwd()
     description=[]
+    TFLITE_MODEL_PATH = "A_iFruits/static/models_files/foodex-v2.tflite" #@param {type:"string"}
+    IMAGES_FOLDER = 'A_iFruits/static/images/src/upload/'
+    FILE_NAME = 'file_upload.jpg'
+    DETECTION_THRESHOLD = 0.2 #@param of confidence before display the prediction
+
+
     if form.validate_on_submit():
 
         if form.file.data :
+
             photo = form.file.data
-            # f = secure_filename(photo.filename) # Dont need it
-            photo.save("A_iFruits/static/images/src/upload/file_upload.jpg")
+            photo.save(IMAGES_FOLDER + FILE_NAME)
 
-            from PIL import Image
-            
-            INPUT_IMAGE_URL = "http://download.tensorflow.org/example_images/android_figurine.jpg" #@param {type:"string"}
-            DETECTION_THRESHOLD = 0.2 #@param {type:"number"}
-            TFLITE_MODEL_PATH = "A_iFruits/static/models_files/foodex-v2.tflite" #@param {type:"string"}
-
-            #TEMP_FILE = '/tmp/image.png'
-            TEMP_FILE = 'A_iFruits/static/images/src/upload/file_upload.jpg'
-            #!wget -q -O $TEMP_FILE $INPUT_IMAGE_URL
-            image = Image.open(TEMP_FILE).convert('RGB')
+            image = Image.open(IMAGES_FOLDER + FILE_NAME).convert('RGB')
             image.thumbnail((500, 500), Image.ANTIALIAS)
             image_np = np.asarray(image)
 
@@ -66,36 +49,15 @@ def upload_photo():
             )
             detector = ObjectDetector(model_path=TFLITE_MODEL_PATH, options=options)
 
-            # Run object detection estimation using the model.
+            # Run object detection .
             detections = detector.detect(image_np)
 
-            # Draw keypoints and edges on input image
             image_np = visualize(image_np, detections)
-
-            print("Before saving image:")  
-            print(os.listdir('A_iFruits/static/images/src/upload/'))  
-
-            os.chdir('A_iFruits/static/images/src/upload/')
             image_np = cv2.cvtColor(image_np, cv2.COLOR_BGR2RGB)
-            cv2.imwrite('file_upload.jpg', image_np)
+            cv2.imwrite(os.path.join(IMAGES_FOLDER , FILE_NAME),  image_np)
 
-            
+            description = return_class_names(image_np, detections)
 
-            # Show the detection result
-            # Image.fromarray(image_np)
-            # print(prediction)
-            # detections = detector.detectObjectsFromImage(input_image=os.path.join(
-            #     execution_path , "A_iFruits/static/images/src",  'file_upload.jpg'
-            # ), output_image_path=os.path.join(execution_path , "A_iFruits/static/images/dest/predict_upload_file.jpg"))
-
-
-            
-        #     for eachObject in detections:
-        #         text = eachObject["name"] , " : " , eachObject["percentage_probability"] 
-        #         description.append(text)
-        #     flash('File predicted', category='success')
-        # else:
-        #     flash('Please load an image', category="error" )
 
     return render_template("upload_photo.html", form=form, description=description)
 
