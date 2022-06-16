@@ -43,10 +43,8 @@ def upload_photo():
             image_np = np.asarray(image)
 
             # Load the TFLite model
-            options = ObjectDetectorOptions(
-                num_threads=4,
-                score_threshold=DETECTION_THRESHOLD,
-            )
+            options = ObjectDetectorOptions( num_threads=4, score_threshold=DETECTION_THRESHOLD)
+
             detector = ObjectDetector(model_path=TFLITE_MODEL_PATH, options=options)
 
             # Run object detection .
@@ -102,9 +100,19 @@ def upload_video():
 
 # Fonction generateur de video 
 def gen(video):
+
+
+    TFLITE_MODEL_PATH = "A_iFruits/static/models_files/foodex-v2.tflite" #@param {type:"string"}
+    DETECTION_THRESHOLD = 0.2 #@param of confidence before display the prediction
+    options = ObjectDetectorOptions( num_threads=4, score_threshold=DETECTION_THRESHOLD)
+    detector = ObjectDetector(model_path=TFLITE_MODEL_PATH, options=options)
+
+
     while True:
         success, image = video.read()
-
+        # # Run object detection . (too long)
+        # detections = detector.detect(image)
+        # image = visualize(image, detections)
         ret, jpeg = cv2.imencode('.jpg', image)
         frame = jpeg.tobytes()
         
@@ -131,17 +139,6 @@ def video_prediction():
 @app.route('/live')
 def predict_live():
 
-    video = cv2.VideoCapture(0) 
-    execution_path = os.getcwd()
-    # detector = VideoObjectDetection()
-    # detector.setModelTypeAsRetinaNet()
-    # detector.setModelPath( os.path.join(execution_path , "A_iFruits/static/models_files/resnet50_coco_best_v2.1.0.h5"))
-    # detector.loadModel()
-
-    # video_path = detector.detectObjectsFromVideo(camera_input=video,
-    #                                 output_file_path=os.path.join(execution_path, "A_iFruits/static/images/dest/camera_detected_1")
-    #                                 , frames_per_second=29, log_progress=True, minimum_percentage_probability=40)
-    flash('Suceess', category='success')
     return render_template("live.html")
 
 
