@@ -6,7 +6,7 @@ Please foloow this following instructions :
 
 Run command : 
 
-run : conda create --name <NewEnvName> python==3.7.6 
+run : conda create --name <NewEnvName> python==3.7
 
 run : conda activate <NewEnvName>
 
