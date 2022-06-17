@@ -9,4 +9,3 @@ Pillow
 flask 
 WTForms
 Flask-WTF
-# conda install cudatoolkit
