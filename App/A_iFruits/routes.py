@@ -1,4 +1,4 @@
-from A_iFruits import app
+from App.A_iFruits import app
 from flask import render_template, Response , request , redirect, url_for , flash
 import numpy as np
 import os
