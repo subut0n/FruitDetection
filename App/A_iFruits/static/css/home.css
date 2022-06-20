@@ -217,6 +217,9 @@ nav a{
     align-self: space-around;
 }
 
+.show-white-space {
+    white-space: pre-line;
+}
 
 @media (max-width: 760px){
 

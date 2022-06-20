@@ -6,6 +6,7 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import os
 from .forms import uploadFile
 from werkzeug.utils import secure_filename
+import pandas as pd
 
 
 list_labels = [
@@ -21,6 +22,8 @@ list_labels = [
     "Salak","Soybeans","Spinach","Strawberry","Tamarillo","Tangelo","Tomato","Turnip",
     "Walnut","Watermelon"
 ]
+
+list_funfact = pd.read_csv('../Data/fruits_description.csv')
 
 # Page d'accueil (Description du produit)
 @app.route('/')
@@ -38,23 +41,26 @@ def upload_photo():
     form = uploadFile()
     execution_path = os.getcwd()
     description=[]
+    funfact_text=[]
     if form.validate_on_submit():
 
         if form.file.data :
             photo = form.file.data
             # f = secure_filename(photo.filename) # Dont need it
-            photo.save("App/A_iFruits/static/images/src/upload/file_upload.jpg")
+            photo.save("A_iFruits/static/images/src/upload/file_upload.jpg")
 
-            model = tf.keras.models.load_model("Data/aifruits_model.h5")
+            model = tf.keras.models.load_model("../Data/aifruits_model.h5")
             predicting_img = ImageDataGenerator(
                 preprocessing_function=tf.keras.applications.resnet50.preprocess_input,
                 dtype=tf.float32
             )
             img_transform = predicting_img.flow_from_directory(
-                directory="App/A_iFruits/static/images/src",
+                directory="A_iFruits/static/images/src",
                 target_size=(75, 75)
             )
-            description = list_labels[np.argmax(model.predict(img_transform))]
+            predicted_label = list_labels[np.argmax(model.predict(img_transform))]
+            description = [predicted_label]
+            funfact_text = str(list_funfact['description'].loc[list_funfact['name']==predicted_label].values).split("\\n")
             # print(prediction)
             # detections = detector.detectObjectsFromImage(input_image=os.path.join(
             #     execution_path , "A_iFruits/static/images/src",  'file_upload.jpg'
@@ -69,7 +75,7 @@ def upload_photo():
         # else:
         #     flash('Please load an image', category="error" )
 
-    return render_template("upload_photo.html", form=form, description=description)
+    return render_template("upload_photo.html", form=form, description=description, funfact_text=funfact_text)
 
 # -------------  Page upload d'une video pour detection
 
