@@ -30,27 +30,26 @@
 
 
     {% if form.file.data %}
-            <h2>Picture predicted and its fun facts</h2>
+        <h2>Picture predicted and its fun facts</h2>
             <div class="row-center ">
+                <div class="column-equal">
+                    <img class="img-upload" src="{{url_for('static', filename='/images/src/upload/file_upload.jpg')}}" />
+                </div>
 
-
-            <div >
-                <img class="img-upload" src="{{url_for('static', filename='/images/src/upload/file_upload.jpg')}}" />
-            </div>
-            <div >
-                
-                <p><b>Details of predictions : </b>{{ description }}<br><br>
-                </p>
-                <p><b>Fun Facts : </b><br>
-                </p>
-                <p>{% for item in funfact_text%}<br>
+                <div class="column-equal">
+                    <p><b>Details of predictions : </b>{{ description }}<br><br>
+                    </p>
                     
-                    <ls> {{ item }} </ls> 
-                    {% endfor %}
-                </p>
+                    <p><b>Fun Facts : </b><br>
+                    </p>
+                    <ul>{% for num in counter %}<br>
+                            <b>{{ unique_class[num] }} </b>
+                            <li> {{ funfact_text[num] }} </li> 
+                        {% endfor %}
+                    </ul>
+                </div>
+                
             </div>
-            
-        </div>
 
     {% endif %}
 
