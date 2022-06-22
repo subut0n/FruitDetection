@@ -4,11 +4,15 @@ import numpy as np
 import os
 from .forms import uploadFile
 from werkzeug.utils import secure_filename
+
+import pandas as pd
 from .prediction import visualize, ObjectDetectorOptions, ObjectDetector, return_class_names
 from PIL import Image
 import cv2
 
 
+
+list_funfact = pd.read_csv('Data/fruits_description.csv')
 
 # Page d'accueil (Description du produit)
 @app.route('/')
@@ -25,6 +29,11 @@ def upload_photo():
 
     form = uploadFile()
     description=[]
+    funfact_text=[]
+    sent_text = []
+    unique_class=[]
+    counter = []
+
     TFLITE_MODEL_PATH = "App/A_iFruits/static/models_files/effinet0.tflite" #@param {type:"string"}
     IMAGES_FOLDER = 'App/A_iFruits/static/images/src/upload/'
     FILE_NAME = 'file_upload.jpg'
@@ -42,6 +51,7 @@ def upload_photo():
             image.thumbnail((500, 500), Image.ANTIALIAS)
             image_np = np.asarray(image)
 
+
             # Load the TFLite model
             options = ObjectDetectorOptions( num_threads=4, score_threshold=DETECTION_THRESHOLD)
 
@@ -56,8 +66,15 @@ def upload_photo():
 
             description = return_class_names(image_np, detections)
 
+            for class_name in description:
+                name_only = class_name.split(" ", 1)[0]
+                if name_only not in unique_class:
+                    unique_class.append(name_only)
+                    funfact_text = funfact_text + list_funfact['description'].loc[list_funfact['name']==name_only].values.tolist()
 
-    return render_template("upload_photo.html", form=form, description=description)
+            counter = range(len(unique_class))
+
+    return render_template("upload_photo.html", form=form, description=description, funfact_text=funfact_text, unique_class=unique_class, counter=counter)
 
 # -------------  Page upload d'une video pour detection
 

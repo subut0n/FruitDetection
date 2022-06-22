@@ -146,6 +146,14 @@ nav a{
     margin: 10px;
 }
 
+/* Create two equal columns that floats next to each other */
+.column-equal {
+    float: left;
+    width: 50%;
+    padding: 10px;
+
+  }
+
 .row-center {
     display: flex;
     flex-direction: row;
@@ -217,6 +225,9 @@ nav a{
     align-self: space-around;
 }
 
+.show-white-space {
+    white-space: pre-line;
+}
 
 @media (max-width: 760px){
 
