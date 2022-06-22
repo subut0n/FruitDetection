@@ -148,7 +148,7 @@ def video_live():
 
     execution_path = os.getcwd()
     video = cv2.VideoCapture(0)
-    video2 = cv2.VideoCapture(os.path.join(execution_path, "A_iFruits/static/images/dest/camera_detected_1.avi"))
+    video2 = cv2.VideoCapture(os.path.join(execution_path, "App/A_iFruits/static/images/dest/camera_detected_1.avi"))
 
     return Response(gen(video),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
