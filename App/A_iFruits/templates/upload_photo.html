@@ -37,8 +37,11 @@
                 </div>
 
                 <div class="column-equal">
-                    <p><b>Details of predictions : </b>{{ description }}<br><br>
-                    </p>
+                    <p><b>Details of predictions : </b>
+                        {% for desc in description %}
+                            {{ desc }} 
+                        {% endfor %}
+                    <br><br></p>
                     
                     <p><b>Fun Facts : </b><br>
                     </p>
