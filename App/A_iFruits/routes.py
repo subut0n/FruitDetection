@@ -25,8 +25,8 @@ def upload_photo():
 
     form = uploadFile()
     description=[]
-    TFLITE_MODEL_PATH = "A_iFruits/static/models_files/foodex-v2.tflite" #@param {type:"string"}
-    IMAGES_FOLDER = 'A_iFruits/static/images/src/upload/'
+    TFLITE_MODEL_PATH = "App/A_iFruits/static/models_files/effinet0.tflite" #@param {type:"string"}
+    IMAGES_FOLDER = 'App/A_iFruits/static/images/src/upload/'
     FILE_NAME = 'file_upload.jpg'
     DETECTION_THRESHOLD = 0.2 #@param of confidence before display the prediction
 
@@ -75,7 +75,7 @@ def upload_video():
             print(form.file.data)
             photo = form.file.data
             photo.save(os.path.join(
-                execution_path , "A_iFruits/static/images/dest",  'file_upload.avi'
+                execution_path , "App/A_iFruits/static/images/dest",  'file_upload.avi'
             ))
 
             
@@ -102,17 +102,17 @@ def upload_video():
 def gen(video):
 
 
-    TFLITE_MODEL_PATH = "A_iFruits/static/models_files/foodex-v2.tflite" #@param {type:"string"}
-    DETECTION_THRESHOLD = 0.2 #@param of confidence before display the prediction
+    TFLITE_MODEL_PATH = "App/A_iFruits/static/models_files/effinet0.tflite" #@param {type:"string"}
+    DETECTION_THRESHOLD = 0.7 #@param of confidence before display the prediction
     options = ObjectDetectorOptions( num_threads=4, score_threshold=DETECTION_THRESHOLD)
     detector = ObjectDetector(model_path=TFLITE_MODEL_PATH, options=options)
 
 
     while True:
         success, image = video.read()
-        # # Run object detection . (too long)
-        # detections = detector.detect(image)
-        # image = visualize(image, detections)
+        # Run object detection . (too long)
+        detections = detector.detect(image)
+        image = visualize(image, detections)
         ret, jpeg = cv2.imencode('.jpg', image)
         frame = jpeg.tobytes()
         
