@@ -1,0 +1,11 @@
+tensorflow==2.8
+tflite-model-maker
+tflite-support
+pandas 
+numpy 
+opencv-python
+opencv-contrib-python==4.5.5.62
+Pillow
+flask 
+WTForms
+Flask-WTF
