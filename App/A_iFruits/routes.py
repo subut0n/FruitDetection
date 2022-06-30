@@ -34,10 +34,10 @@ def upload_photo():
     unique_class=[]
     counter = []
 
-    TFLITE_MODEL_PATH = "App/A_iFruits/static/models_files/effinet0.tflite" #@param {type:"string"}
+    TFLITE_MODEL_PATH = "App/A_iFruits/static/models_files/foodex-v6-lite0.tflite" #@param {type:"string"}
     IMAGES_FOLDER = 'App/A_iFruits/static/images/src/upload/'
     FILE_NAME = 'file_upload.jpg'
-    DETECTION_THRESHOLD = 0.2 #@param of confidence before display the prediction
+    DETECTION_THRESHOLD = 0.55 #@param of confidence before display the prediction
 
 
     if form.validate_on_submit():
@@ -119,7 +119,7 @@ def upload_video():
 def gen(video):
 
 
-    TFLITE_MODEL_PATH = "App/A_iFruits/static/models_files/effinet0.tflite" #@param {type:"string"}
+    TFLITE_MODEL_PATH = "App/A_iFruits/static/models_files/foodex-v6-lite0.tflite" #@param {type:"string"}
     DETECTION_THRESHOLD = 0.7 #@param of confidence before display the prediction
     options = ObjectDetectorOptions( num_threads=4, score_threshold=DETECTION_THRESHOLD)
     detector = ObjectDetector(model_path=TFLITE_MODEL_PATH, options=options)
@@ -141,7 +141,7 @@ def gen(video):
 def video_prediction():   
 
     execution_path = os.getcwd()
-    video_path = os.path.join(execution_path, "A_iFruits/static/images/dest/file_upload.avi")
+    video_path = os.path.join(execution_path, "App/A_iFruits/static/images/dest/file_upload.avi")
     video = cv2.VideoCapture(video_path) 
 
     return Response(gen(video),
@@ -165,7 +165,6 @@ def video_live():
 
     execution_path = os.getcwd()
     video = cv2.VideoCapture(0)
-    video2 = cv2.VideoCapture(os.path.join(execution_path, "App/A_iFruits/static/images/dest/camera_detected_1.avi"))
 
     return Response(gen(video),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
