@@ -1,8 +1,4 @@
 import numpy as np
-import os
-from tflite_model_maker.config import ExportFormat, QuantizationConfig
-from tflite_model_maker import model_spec
-from tflite_model_maker import object_detector
 import platform
 from typing import List, NamedTuple
 import json
@@ -15,7 +11,6 @@ Interpreter = tf.lite.Interpreter
 load_delegate = tf.lite.experimental.load_delegate
 
 # pylint: enable=g-import-not-at-top
-
 
 class ObjectDetectorOptions(NamedTuple):
   """A config to initialize an object detector."""
@@ -312,11 +307,8 @@ def return_class_names ( image: np.ndarray, detections: List[Detection]) :
     category = detection.categories[0]
     probability = round(category.score, 2)
     class_name = category.label
-    
     text = class_name + ' (' + str(probability) + ')'
 
     result_text.append(text)
-
-    
 
   return result_text

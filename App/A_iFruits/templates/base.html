@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,25 +15,22 @@
         {% endblock %}
     </title>
 </head>
+
 <body>
-    
-    <nav class="navMenu" >
+
+    <nav class="navMenu">
         <a href="{{url_for('homepage')}}">Home</a>
         <a href="{{url_for('upload_photo')}}">Photo prediction</a>
         <a href="{{url_for('upload_video')}}">Video prediction</a>
         <a href="{{url_for('predict_live')}}">Live prediction</a>
         <div class="dot"></div>
     </nav>
-    
+
     {% block content %}
-
-
-
-
-
     {% endblock %}
 
     {% block script %}
     {% endblock %}
 </body>
+
 </html>

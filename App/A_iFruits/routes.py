@@ -3,8 +3,6 @@ from flask import render_template, Response , request , redirect, url_for , flas
 import numpy as np
 import os
 from .forms import uploadFile
-from werkzeug.utils import secure_filename
-
 import pandas as pd
 from .prediction import visualize, ObjectDetectorOptions, ObjectDetector, return_class_names
 from PIL import Image

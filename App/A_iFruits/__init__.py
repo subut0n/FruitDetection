@@ -1,11 +1,11 @@
 from flask import Flask
+import os
+from dotenv import load_dotenv
+load_dotenv() 
 
 app = Flask(__name__)
 
 from .routes import *
 
-SECRET_KEY = os.urandom(32)
-app.config['SECRET_KEY'] = SECRET_KEY
-
-WTF_CSRF_SECRET_KEY = 'a random string'
-app.config['WTF_CSRF_SECRET_KEY'] = SECRET_KEY
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+app.config['WTF_CSRF_SECRET_KEY'] = os.getenv('WTF_CSRF_SECRET_KEY')

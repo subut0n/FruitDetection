@@ -1,39 +1,35 @@
 {% extends 'base.html' %}
 
 {% block css %}
-    <link rel="stylesheet" href="../static/css/home.css">
+<link rel="stylesheet" href="../static/css/home.css">
 {% endblock %}
 
-{% block title %} 
-    Homepage
+{% block title %}
+Homepage
 {% endblock %}
 
 {% block content %}
-    <h1> Make your video prediction  </h1>
+<h1> Make your video prediction </h1>
 
 
 
-    <div class="form">
-        <label for="file"> Load your picture below : </label> 
+<div class="form">
+    <label for="file"> Load your picture below : </label>
 
-        <form method="POST" enctype=multipart/form-data>
-            {{ form.hidden_tag() }}
-
-            {{form.file }}
-
-            {{form.submit }}
-
-        </form>
-    </div>
-        
+    <form method="POST" enctype=multipart/form-data>
+        {{ form.hidden_tag() }}
+        {{form.file }}
+        {{form.submit }}
+    </form>
+</div>
 
 
 
-    {% if form.file.data %}
-    <div class="camera">
-        <img src="{{url_for('video_prediction')}}">
 
-    </div>
-    {% endif %}
+{% if form.file.data %}
+<div class="camera">
+    <img src="{{url_for('video_prediction')}}">
+</div>
+{% endif %}
 
 {% endblock %}
