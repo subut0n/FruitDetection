@@ -10,3 +10,4 @@ flask
 WTForms
 Flask-WTF
 python-dotenv
+imutils
