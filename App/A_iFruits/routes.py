@@ -7,6 +7,7 @@ import pandas as pd
 from .prediction import visualize, ObjectDetectorOptions, ObjectDetector, return_class_names
 from PIL import Image
 import cv2
+from imutils.video import WebcamVideoStream
 
 
 
@@ -32,10 +33,10 @@ def upload_photo():
     unique_class=[]
     counter = []
 
-    TFLITE_MODEL_PATH = "App/A_iFruits/static/models_files/foodex-v6-lite0.tflite" #@param {type:"string"}
+    TFLITE_MODEL_PATH = "App/A_iFruits/static/models_files/foodex-v8.tflite" #@param {type:"string"}
     IMAGES_FOLDER = 'App/A_iFruits/static/images/src/upload/'
     FILE_NAME = 'file_upload.jpg'
-    DETECTION_THRESHOLD = 0.55 #@param of confidence before display the prediction
+    DETECTION_THRESHOLD = 0.48
 
 
     if form.validate_on_submit():
@@ -117,14 +118,14 @@ def upload_video():
 def gen(video):
 
 
-    TFLITE_MODEL_PATH = "App/A_iFruits/static/models_files/foodex-v6-lite0.tflite" #@param {type:"string"}
-    DETECTION_THRESHOLD = 0.7 #@param of confidence before display the prediction
+    TFLITE_MODEL_PATH = "App/A_iFruits/static/models_files/foodex-v8.tflite" #@param {type:"string"}
+    DETECTION_THRESHOLD = 0.48
     options = ObjectDetectorOptions( num_threads=4, score_threshold=DETECTION_THRESHOLD)
     detector = ObjectDetector(model_path=TFLITE_MODEL_PATH, options=options)
 
 
     while True:
-        success, image = video.read()
+        image = video.read()
         # Run object detection . (too long)
         detections = detector.detect(image)
         image = visualize(image, detections)
@@ -140,7 +141,7 @@ def video_prediction():
 
     execution_path = os.getcwd()
     video_path = os.path.join(execution_path, "App/A_iFruits/static/images/dest/file_upload.avi")
-    video = cv2.VideoCapture(video_path) 
+    video = WebcamVideoStream(src = 0).start()
 
     return Response(gen(video),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
@@ -162,7 +163,7 @@ def predict_live():
 def video_live():   
 
     execution_path = os.getcwd()
-    video = cv2.VideoCapture(0)
+    video = WebcamVideoStream(src = 0).start()
 
     return Response(gen(video),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
