@@ -7,7 +7,6 @@ import pandas as pd
 from .prediction import visualize, ObjectDetectorOptions, ObjectDetector, return_class_names
 from PIL import Image
 import cv2
-from imutils.video import WebcamVideoStream
 
 
 
@@ -36,7 +35,7 @@ def upload_photo():
     TFLITE_MODEL_PATH = "App/A_iFruits/static/models_files/foodex-v8.tflite" #@param {type:"string"}
     IMAGES_FOLDER = 'App/A_iFruits/static/images/src/upload/'
     FILE_NAME = 'file_upload.jpg'
-    DETECTION_THRESHOLD = 0.48
+    DETECTION_THRESHOLD = 0.42
 
 
     if form.validate_on_submit():
@@ -125,7 +124,7 @@ def gen(video):
 
 
     while True:
-        image = video.read()
+        success, image = video.read()
         # Run object detection . (too long)
         detections = detector.detect(image)
         image = visualize(image, detections)
@@ -141,7 +140,7 @@ def video_prediction():
 
     execution_path = os.getcwd()
     video_path = os.path.join(execution_path, "App/A_iFruits/static/images/dest/file_upload.avi")
-    video = WebcamVideoStream(src = 0).start()
+    video = cv2.VideoCapture(video_path) 
 
     return Response(gen(video),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
@@ -163,7 +162,7 @@ def predict_live():
 def video_live():   
 
     execution_path = os.getcwd()
-    video = WebcamVideoStream(src = 0).start()
+    video = cv2.VideoCapture(0)
 
     return Response(gen(video),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
