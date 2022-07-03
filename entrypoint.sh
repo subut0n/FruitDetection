@@ -13,3 +13,6 @@ conda activate fruits
 
 # Re-enable strict mode:
 set -euo pipefail
+
+# exec the final command:
+exec python app.py
