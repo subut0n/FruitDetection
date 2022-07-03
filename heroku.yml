@@ -1,0 +1,5 @@
+build:
+  docker:
+    web: Dockerfile
+run:
+  web: gunicorn main:app 0.0.0.0:$PORT
