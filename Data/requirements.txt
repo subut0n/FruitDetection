@@ -1,3 +1,0 @@
-python==3.6.15
-tensorflow
-numpy
