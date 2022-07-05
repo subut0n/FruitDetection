@@ -7,7 +7,7 @@ Please foloow this following instructions :
 
 Follow this command to build the Dockerfile and run the App in localhost: 
 
-Command : git https://github.com/subut0n/FruitDetection
+Command : git clone https://github.com/subut0n/FruitDetection
 
 Command : cd FruitDetection 
 
