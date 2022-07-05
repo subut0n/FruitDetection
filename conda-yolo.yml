@@ -1,4 +1,4 @@
-name: fruits2
+name: fruits
 channels:
   - defaults
 dependencies:
