@@ -9,8 +9,8 @@ Homepage
 {% endblock %}
 
 {% block content %}
-<h1> Perform your photo analysis ! &#128523;</h1>
-
+<h1 class="title-page"> Perform your photo analysis ! &#128523;</h1>
+<div class="separator"></div>
 
 
 <div class="form">
@@ -29,7 +29,7 @@ Homepage
 
     <br>
 
-    <label for="file"> Load your picture below : </label>
+    <label class="description" for="file"> Load your picture below : </label>
 
     <form method="POST" enctype=multipart/form-data>
         {{ form.hidden_tag() }}

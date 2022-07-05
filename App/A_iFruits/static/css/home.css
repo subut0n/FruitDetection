@@ -8,15 +8,26 @@ body {
     padding: 2%;
     background-color: #caebca;
     color: #ffffff;
+    /* text-shadow: 1px 1px pink; */
+}
+
+.description {
+    text-align: center;
+    text-shadow: 1px 1px yellowgreen;
 }
 
 h1 {
     padding: 2% 0% 2% 0%;
-    color:#eb817a;
+    color: tomato;
     font-family: 'Montserrat', sans-serif;
     text-align:center;
+    /* text-shadow: purple; */
     margin: 20px 0;
-    border-bottom: 1px solid white;
+    /* border-bottom: 1px solid white; */
+}
+
+.title-page {
+    text-shadow: 2px 2px purple;
 }
 
 h2 {
@@ -25,6 +36,10 @@ h2 {
     display: block;
     text-align: center;
     padding-left: 5%;
+}
+
+.title2 {
+    text-shadow: 2px 2px yellowgreen;
 }
 
 /* nav ul{
@@ -71,12 +86,13 @@ nav a{
 
 .navMenu a {
     font-family: "Montserrat", sans-serif;
-    color: #ffffff;
+    color: white;
     /* color: #22611c; */
     display: flex;
     justify-content: center;
     align-items: center;
     text-decoration: none;
+    text-shadow: 1px 1px yellowgreen;
     font-size: 1.2em;
     text-transform: uppercase;
     /* font-weight: 500; */
@@ -281,9 +297,15 @@ nav a{
 
 }
 
+.separator {
+    border-bottom: 1px solid white;
+    /* border-style:ridge; */
+}
+
 .animate-title
 {
     font-family: "Montserrat", sans-serif;
+    /* text-shadow: 2px 2px yellowgreen; */
    /* text-transform: uppercase; */
   background-image: linear-gradient(
     -225deg,
@@ -301,7 +323,6 @@ nav a{
   background-size: 200% auto;
   color: #fff;
   background-clip: text;
-  text-fill-color: transparent;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: textclip 2s linear infinite;
@@ -319,10 +340,11 @@ nav a{
     position: relative;
   }
 .waviy span {
+    text-shadow: 2px 2px purple;
     position: relative;
     display: inline-block;
     font-size: 40px;
-    color: rgb(230, 154, 196);
+    /* color: rosybrown; */
     text-transform: uppercase;
     animation: flip 2s infinite;
     animation-delay: calc(.2s * var(--i))
@@ -332,5 +354,7 @@ nav a{
       transform: rotateY(360deg) 
     }
 }
+
+
 
 /* 
