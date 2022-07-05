@@ -1,4 +1,8 @@
 FROM continuumio/miniconda3
+FROM mcr.microsoft.com/appsvc/python:latest
+
+ENV PORT 8080
+EXPOSE 8080
 
 WORKDIR /app
 COPY . ./app
