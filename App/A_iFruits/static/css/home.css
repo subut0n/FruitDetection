@@ -67,6 +67,7 @@ nav a{
 .navMenu {
     position: relative;
     display: flex;
+    flex-wrap: wrap;
 }
 
 .navMenu a {
@@ -268,6 +269,10 @@ nav a{
         flex-wrap : wrap ;
     }
 
+    .logo a img {
+        max-height: 120px;
+        max-width: 120px;
+        }
     body {
         font-size: 12px;}
 
