@@ -35,17 +35,25 @@ Homepage
 </div>
 
 <h2>Picture predicted and its fun facts</h2>
-
-    {% if form.file.data %}
-            <h2>Picture predicted</h2>
-            <div class="row-center ">
-            <div >
-                <img class="img-upload" src="{{url_for('static', filename='yolov5/runs/detect/yolo_foodex/file_upload.jpg')}}" />
-            </div>
-            <div >
-                <p>Details of predictions : {{ description }}<br><br>
-                </p>
-            </div>
-        </div>
-    {% endif %}
+{% if form.file.data %}
+<h2>Picture predicted</h2>
+<div class="row-center ">
+    <div>
+        <img class="img-upload"
+            src="{{url_for('static', filename='yolov5/runs/detect/yolo_foodex/file_upload.jpg')}}" />
+    </div>
+    <div class="column-equal">
+        <h4>Details of predictions : </h4>
+        <p> 
+        {% for pred in description %}
+        {{ pred }} |
+        {% endfor %} </p>
+        <h4> Fun fact : </h4>
+        {% for fun in funfact_text %}
+        <p> {{ fun }}<br><br>
+            {% endfor %}
+        </p>
+    </div>
+</div>
+{% endif %}
 {% endblock %}
