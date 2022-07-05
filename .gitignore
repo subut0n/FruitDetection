@@ -3,8 +3,10 @@ __pycache__
 .vscode
 fruits-360_dataset
 fruits-360-original-size
-
 *_copy.py
 *copy.html
 *.env
 *.avi
+dataset
+models
+.env

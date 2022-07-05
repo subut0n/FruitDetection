@@ -1,0 +1,9 @@
+train: dataset/images/train/ 
+val:  dataset/images/val/
+test: dataset/images/test/
+
+# Number of Classes
+nc: 7
+
+# Class names
+names: ["Apple","Orange","Banana","Tomato","Strawberry","Pear","Pineapple"]

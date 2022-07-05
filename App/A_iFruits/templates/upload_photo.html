@@ -40,6 +40,7 @@ Homepage
     <div class="column-equal">
         <img class="img-upload" src="{{url_for('static', filename='/images/src/upload/file_upload.jpg')}}" />
     </div>
+<<<<<<< HEAD
 
     <div class="column-equal">
         <p><b>Details of predictions : </b>
@@ -59,5 +60,23 @@ Homepage
 </div>
 
 {% endif %}
+=======
+        
+
+
+
+    {% if form.file.data %}
+            <h2>Picture predicted</h2>
+            <div class="row-center ">
+            <div >
+                <img class="img-upload" src="{{url_for('static', filename='yolov5/runs/detect/yolo_foodex/file_upload.jpg')}}" />
+            </div>
+            <div >
+                <p>Details of predictions : {{ description }}<br><br>
+                </p>
+            </div>
+        </div>
+    {% endif %}
+>>>>>>> yolo_suite
 
 {% endblock %}

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from App.A_iFruits import app
 from flask import render_template, Response , request , redirect, url_for , flash
 import numpy as np
@@ -11,6 +12,18 @@ import cv2
 
 
 list_funfact = pd.read_csv('Data/fruits_description.csv')
+=======
+from . import app
+from flask import render_template, Response , request , redirect, url_for , flash
+import cv2 
+import os
+from .forms import uploadFile
+
+
+execution_path = os.getcwd()
+base_app = execution_path + '/App/A_iFruits/'
+base_model = base_app + 'static/yolov5/'
+>>>>>>> yolo_suite
 
 # Page d'accueil (Description du produit)
 @app.route('/')
@@ -43,12 +56,23 @@ def upload_photo():
         if form.file.data :
 
             photo = form.file.data
+<<<<<<< HEAD
             photo.save(IMAGES_FOLDER + FILE_NAME)
 
             image = Image.open(IMAGES_FOLDER + FILE_NAME).convert('RGB')
             image.thumbnail((500, 500), Image.ANTIALIAS)
             image_np = np.asarray(image)
 
+=======
+            # f = secure_filename(photo.filename) # Dont need it
+            photo.save("App/A_iFruits/static/images/src/upload/file_upload.jpg")
+            os.system(f'python {base_model}detect.py --source {base_app}static/images/src/upload/file_upload.jpg --weights {base_model}best4.pt --conf 0.5 --name yolo_foodex')
+            
+            # Run here the commande cli for yolo
+        #     flash('File predicted', category='success')
+        # else:
+        #     flash('Please load an image', category="error" )
+>>>>>>> yolo_suite
 
             # Load the TFLite model
             options = ObjectDetectorOptions( num_threads=4, score_threshold=DETECTION_THRESHOLD)
@@ -85,28 +109,14 @@ def upload_video():
     if form.validate_on_submit():
 
         if form.file.data :
-
-
             print(form.file.data)
             photo = form.file.data
             photo.save(os.path.join(
                 execution_path , "App/A_iFruits/static/images/dest",  'file_upload.avi'
             ))
-
-            
-            print(form.file.__dict__)
-            
-            # detector = VideoObjectDetection()
-            # detector.setModelTypeAsRetinaNet()
-            # detector.setModelPath( os.path.join(execution_path , "A_iFruits/static/models_files/resnet50_coco_best_v2.1.0.h5"))
-            # detector.loadModel()
-
-            # video_path = detector.detectObjectsFromVideo(camera_input=os.path.join(
-            #     execution_path , "A_iFruits/static/images/dest",  'file_upload.avi'), output_file_path=os.path.join(execution_path, "A_iFruits/static/images/dest/camera_detected_1")
-            #                                 , frames_per_second=1, log_progress=True, minimum_percentage_probability=40)
-
-            
-            flash('File predicted', category='success')
+            os.system(f'python {base_model}detect.py --source {base_app}static/images/dest/file_upload.jpg --weights {base_model}best4.pt --conf 0.5 --name yolo_foodex')
+            flash('Video predicted', category='success')
+            redirect(url_for('home.html')) # Page pour visualiser la vidéo upload et predite à faire (voir page live.html)
         else:
             flash('Please load an image', category="error" )
 
@@ -125,10 +135,16 @@ def gen(video):
 
     while True:
         success, image = video.read()
+<<<<<<< HEAD
         # Run object detection . (too long)
         detections = detector.detect(image)
         image = visualize(image, detections)
+=======
+
+
+>>>>>>> yolo_suite
         ret, jpeg = cv2.imencode('.jpg', image)
+
         frame = jpeg.tobytes()
         
         yield (b'--frame\r\n'
@@ -141,7 +157,7 @@ def video_prediction():
     execution_path = os.getcwd()
     video_path = os.path.join(execution_path, "App/A_iFruits/static/images/dest/file_upload.avi")
     video = cv2.VideoCapture(video_path) 
-
+    
     return Response(gen(video),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
@@ -154,15 +170,25 @@ def video_prediction():
 @app.route('/live')
 def predict_live():
 
+<<<<<<< HEAD
+=======
+    flash('Suceess', category='success')
+>>>>>>> yolo_suite
     return render_template("live.html")
 
 
 
 @app.route('/video_feed')
 def video_live():   
+<<<<<<< HEAD
 
     execution_path = os.getcwd()
     video = cv2.VideoCapture(0)
+=======
+    os.system(f'python {base_model}detect.py --source 0 --weights {base_model}best4.pt --conf 0.5')
+    
+    video = cv2.VideoCapture(f'{base_model}runs/detect/exp/0.mp4') 
+>>>>>>> yolo_suite
 
     return Response(gen(video),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
