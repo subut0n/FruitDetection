@@ -31,11 +31,6 @@ def upload_photo():
     unique_class=[]
     counter = []
 
-    TFLITE_MODEL_PATH = "App/A_iFruits/static/models_files/foodex-v8.tflite" #@param {type:"string"}
-    IMAGES_FOLDER = 'App/A_iFruits/static/images/src/upload/'
-    FILE_NAME = 'file_upload.jpg'
-    DETECTION_THRESHOLD = 0.42
-
 
     if form.validate_on_submit():
 
@@ -44,7 +39,7 @@ def upload_photo():
             photo = form.file.data
             # f = secure_filename(photo.filename) # Dont need it
             photo.save("App/A_iFruits/static/images/src/upload/file_upload.jpg")
-            os.system(f'python {base_model}detect.py --source {base_app}static/images/src/upload/file_upload.jpg --weights {base_model}best4.pt --conf 0.5 --name yolo_foodex')
+            os.system(f'python {base_model}detect.py --source {base_app}static/images/src/upload/file_upload.jpg --weights {base_model}best5.pt --conf 0.5 --name yolo_foodex')
             
             # Run here the commande cli for yolo
         #     flash('File predicted', category='success')
@@ -70,7 +65,7 @@ def upload_video():
             photo.save(os.path.join(
                 execution_path , "App/A_iFruits/static/images/dest",  'file_upload.avi'
             ))
-            os.system(f'python {base_model}detect.py --source {base_app}static/images/dest/file_upload.jpg --weights {base_model}best4.pt --conf 0.5 --name yolo_foodex')
+            os.system(f'python {base_model}detect.py --source {base_app}static/images/dest/file_upload.jpg --weights {base_model}best5.pt --conf 0.5 --name yolo_foodex')
             flash('Video predicted', category='success')
             redirect(url_for('home.html')) # Page pour visualiser la vidéo upload et predite à faire (voir page live.html)
         else:
@@ -82,16 +77,8 @@ def upload_video():
 # Fonction generateur de video 
 def gen(video):
 
-
-    TFLITE_MODEL_PATH = "App/A_iFruits/static/models_files/foodex-v8.tflite" #@param {type:"string"}
-    DETECTION_THRESHOLD = 0.48
-    options = ObjectDetectorOptions( num_threads=4, score_threshold=DETECTION_THRESHOLD)
-    detector = ObjectDetector(model_path=TFLITE_MODEL_PATH, options=options)
-
-
     while True:
         success, image = video.read()
-
 
         ret, jpeg = cv2.imencode('.jpg', image)
 
@@ -127,7 +114,7 @@ def predict_live():
 
 @app.route('/video_feed')
 def video_live():   
-    os.system(f'python {base_model}detect.py --source 0 --weights {base_model}best4.pt --conf 0.5')
+    os.system(f'python {base_model}detect.py --source 0 --weights {base_model}best5.pt --conf 0.5')
     
     video = cv2.VideoCapture(f'{base_model}runs/detect/exp/0.mp4') 
 
