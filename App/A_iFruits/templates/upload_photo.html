@@ -34,36 +34,7 @@ Homepage
     </form>
 </div>
 
-{% if form.file.data %}
 <h2>Picture predicted and its fun facts</h2>
-<div class="row-center ">
-    <div class="column-equal">
-        <img class="img-upload" src="{{url_for('static', filename='/images/src/upload/file_upload.jpg')}}" />
-    </div>
-<<<<<<< HEAD
-
-    <div class="column-equal">
-        <p><b>Details of predictions : </b>
-            {% for desc in description %}
-            {{ desc }}
-            {% endfor %}
-            <br><br>
-        </p>
-        <p><b>Fun Facts : </b><br>
-        </p>
-        <ul>{% for num in counter %}<br>
-            <b>{{ unique_class[num] }} </b>
-            <li> {{ funfact_text[num] }} </li>
-            {% endfor %}
-        </ul>
-    </div>
-</div>
-
-{% endif %}
-=======
-        
-
-
 
     {% if form.file.data %}
             <h2>Picture predicted</h2>
@@ -77,6 +48,4 @@ Homepage
             </div>
         </div>
     {% endif %}
->>>>>>> yolo_suite
-
 {% endblock %}
