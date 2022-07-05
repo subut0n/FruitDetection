@@ -1,13 +1,30 @@
 {% extends 'base.html' %}
 
 {% block css %}
-    <link rel="stylesheet" href="../static/css/home.css">
+<link rel="stylesheet" href="../static/css/home.css">
 {% endblock %}
 
-{% block title %} 
-    Homepage
+{% block title %}
+Homepage
 {% endblock %}
 
 {% block content %}
-    <h1> Hello World </h1>
+<h1 class="animate-title">Foodex</h1>
+<div class="columnFlex">
+
+    <div class="colum-center">
+        <h2>Original picture</h2>
+        <img class="img-home" src="{{url_for('static', filename='assets/imagehome1.jpg')}}" />
+    </div>
+    <div class="colum-center">
+        <h2>Predicted picture </h2>
+        <img class="img-home" src="{{url_for('static', filename='assets/imagehome2.jpg')}}" />
+    </div>
+</div>
+
+<div class="row-center ">
+    <p>Made by students. SIMPLON</p>
+</div>
+
+
 {% endblock %}

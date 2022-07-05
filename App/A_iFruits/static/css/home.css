@@ -1,0 +1,334 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+
+body {
+    font-family: "Montserrat", sans-serif;
+    font-size: 23px;
+    font-weight: bold;
+    box-sizing: border-box;
+    padding: 2%;
+    background-color: #caebca;
+    color: #ffffff;
+}
+
+h1 {
+    padding: 2% 0% 2% 0%;
+    color:#eb817a;
+    font-family: 'Montserrat', sans-serif;
+    text-align:center;
+    margin: 20px 0;
+    border-bottom: 1px solid white;
+}
+
+h2 {
+    padding: 2% 0% 2% 0%;
+    font-family: 'Montserrat', sans-serif;
+    display: block;
+    text-align: center;
+    padding-left: 5%;
+}
+
+/* nav ul{
+    margin:0;
+    padding:0;
+    display:flex;
+}
+
+nav li{
+    list-style-type:none;
+    width:25%;
+    text-align:center;
+    justify-content: center;
+}
+
+nav li:hover a{
+    padding: 15px 30px 20px 30px;
+    color:pink;
+}
+
+nav a{
+    box-sizing: inherit;
+    justify-content: center;
+    align-items: center;
+    font-family: Roboto;
+    color:white; 
+    display:block;
+    padding:20px 30px;
+    text-transform:uppercase;
+    text-decoration:none;
+    text-shadow: 0px 2px #ff0000;
+} */
+/* 
+.navbar{
+    background-color: #00561B; 
+    opacity: 1;
+    
+} */
+
+.navMenu {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.navMenu a {
+    font-family: "Montserrat", sans-serif;
+    color: #ffffff;
+    /* color: #22611c; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    /* font-weight: 500; */
+    display: block;
+    padding-right: 20px;
+    /* width: 80px; */
+    /* -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out; */
+}
+  
+.navMenu a:hover {
+    color: #fddb3a;
+}
+
+.navMenu .dot {
+    width: 6px;
+    height: 6px;
+    background: #fddb3a;
+    border-radius: 50%;
+    opacity: 0;
+    /* -webkit-transform: translateX(30px);
+    transform: translateX(30px);
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out; */
+  }
+  
+  .navMenu a:nth-child(1):hover ~ .dot {
+    -webkit-transform: translateX(30px);
+    transform: translateX(30px);
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    opacity: 1;
+  }
+  
+  .navMenu a:nth-child(2):hover ~ .dot {
+    -webkit-transform: translateX(110px);
+    transform: translateX(110px);
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    opacity: 1;
+  }
+  
+  .navMenu a:nth-child(3):hover ~ .dot {
+    -webkit-transform: translateX(200px);
+    transform: translateX(200px);
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    opacity: 1;
+  }
+  
+  .navMenu a:nth-child(4):hover ~ .dot {
+    -webkit-transform: translateX(285px);
+    transform: translateX(285px);
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    opacity: 1;
+  }
+  
+  .logo a {
+   display: block;
+  }
+  .logo a img {
+    max-height: 150px;
+    max-width: 150px;
+  }
+
+
+.colum-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    margin: 10px;
+}
+
+/* Create two equal columns that floats next to each other */
+.column-equal {
+    float: left;
+    width: 50%;
+    padding: 10px;
+
+  }
+
+.row-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 10px;
+    padding-bottom: 3%;
+    
+}
+
+.row-center div:nth-child(2) {
+    align-self:flex-start;
+    border: 1px dashed red;
+    margin: 2%;
+    padding: 3%;
+    border-radius: 5%;
+}
+
+.columnFlex {
+    display : flex ; 
+    flex-direction: row ;
+    align-items: center;
+    flex-wrap : nowrap ;
+}
+
+
+.img-home {
+    box-sizing: inherit;
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    width: 100%;
+    height: 50%;
+    border: 2px solid grey;
+}
+
+.img-upload {
+    box-sizing: border-box;
+    margin: 5px;
+    padding: 5px;
+    width: 100%;
+
+}
+
+.camera {
+    box-sizing: inherit;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.camera img {
+    box-sizing: inherit;
+    width: 65%;
+}
+
+
+.img-camera {
+    display: block;
+    align-content: center;
+    align-self: center;
+}
+
+
+.form {
+    margin: 2%;
+}
+
+.form label {
+    align-self: space-around;
+}
+
+.show-white-space {
+    white-space: pre-line;
+}
+
+@media (max-width: 760px){
+
+    .row-center div:nth-child(2) {
+        align-self:center;
+        border: 1px dashed red;
+        margin: 2%;
+        padding: 3%;
+        border-radius: 5%;
+    }
+
+    .row-center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        align-content: space-around;
+        justify-content: space-around;
+        margin: 10px;
+        padding-bottom: 3%;
+        
+    }
+    
+}
+
+@media (max-width: 760px){
+
+    .columnFlex {
+        display : flex ; 
+        flex-direction: row wrap ;
+        align-items: center;
+        flex-wrap : wrap ;
+    }
+
+    .logo a img {
+        max-height: 120px;
+        max-width: 120px;
+        }
+    body {
+        font-size: 12px;}
+
+}
+
+
+@media (max-width: 380px){
+
+    body {
+        font-size: 8px;}
+
+}
+
+.animate-title
+{
+   text-transform: uppercase;
+  background-image: linear-gradient(
+    -225deg,
+    rgb(41, 139, 62) 0%,
+    #da7416 29%,
+    #ff1361 67%,
+    #fff800 100%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 2s linear infinite;
+  /* display: inline-block; */
+      font-size: 50 px;
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.waviy {
+    position: relative;
+  }
+.waviy span {
+    position: relative;
+    display: inline-block;
+    font-size: 40px;
+    color: #fff;
+    text-transform: uppercase;
+    animation: flip 2s infinite;
+    animation-delay: calc(.2s * var(--i))
+}
+@keyframes flip {
+    0%,80% {
+      transform: rotateY(360deg) 
+    }
+}
