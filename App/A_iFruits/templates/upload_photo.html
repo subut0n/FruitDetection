@@ -9,7 +9,7 @@ Homepage
 {% endblock %}
 
 {% block content %}
-<h1 class="title-page"> Perform your photo analysis ! &#128523;</h1>
+<h1 class="animate-title"> Perform Your Photo Analysis</h1>
 <div class="separator"></div>
 
 
@@ -39,7 +39,7 @@ Homepage
 </div>
 
 {% if form.file.data %}
-<h1 class="animate-title"> Final predictions and score confidence</h1>
+<h1 class="animate-title"> Final prediction and score confidence</h1>
 <div class="row-center ">
     <div class="column-equal">
         <img class="img-upload" src="{{url_for('static', filename='/images/src/upload/file_upload.jpg')}}" />
