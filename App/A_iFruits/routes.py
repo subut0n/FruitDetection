@@ -30,8 +30,7 @@ def upload_photo():
             photo = form.file.data
             # f = secure_filename(photo.filename) # Dont need it
             photo.save("App/A_iFruits/static/images/src/upload/file_upload.jpg")
-            os.system(f'python {base_model}detect.py --source {base_app}static/images/src/upload/file_upload.jpg --weights {base_model}best.pt --conf 0.5 --name yolo_foodex')
-            
+            os.system(f'python {base_model}detect.py --source {base_app}static/images/src/upload/file_upload.jpg --weights {base_model}best4.pt --conf 0.5 --name yolo_foodex')
             
             # Run here the commande cli for yolo
         #     flash('File predicted', category='success')
@@ -51,14 +50,12 @@ def upload_video():
     if form.validate_on_submit():
 
         if form.file.data :
-
-
             print(form.file.data)
             photo = form.file.data
             photo.save(os.path.join(
                 execution_path , "A_iFruits/static/images/dest",  'file_upload.avi'
             ))
-            os.system(f'python {base_model}detect.py --source {base_app}static/images/dest/file_upload.jpg --weights {base_model}best.pt --conf 0.5 --name yolo_foodex')
+            os.system(f'python {base_model}detect.py --source {base_app}static/images/dest/file_upload.jpg --weights {base_model}best4.pt --conf 0.5 --name yolo_foodex')
             flash('Video predicted', category='success')
             redirect(url_for('home.html')) # Page pour visualiser la vidéo upload et predite à faire (voir page live.html)
         else:
@@ -107,7 +104,7 @@ def predict_live():
 
 @app.route('/video_feed')
 def video_live():   
-    os.system(f'python {base_model}detect.py --source 0 --weights {base_model}best.pt --conf 0.5')
+    os.system(f'python {base_model}detect.py --source 0 --weights {base_model}best4.pt --conf 0.5')
     
     video = cv2.VideoCapture(f'{base_model}runs/detect/exp/0.mp4') 
 
