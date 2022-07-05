@@ -85,7 +85,7 @@ dependencies:
     - typing-extensions==4.3.0
     - urllib3==1.26.9
     - wcwidth==0.2.5
-    - werkzeug==2.1.2
+    - Werkzeug==2.1.0
     - wtforms==3.0.1
     - zipp==3.8.0
-prefix: /home/ayoub/anaconda3/envs/fruits2
+prefix: /home/ayoub/anaconda3/envs/fruits
