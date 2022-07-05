@@ -9,7 +9,7 @@ cd ./app
 
 # Temporarily disable strict mode and activate conda:
 set +euo pipefail
-conda activate fruits
+conda activate fruits2
 
 # Re-enable strict mode:
 set -euo pipefail
