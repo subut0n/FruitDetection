@@ -35,7 +35,7 @@ def upload_photo():
     TFLITE_MODEL_PATH = "App/A_iFruits/static/models_files/foodex-v8.tflite" #@param {type:"string"}
     IMAGES_FOLDER = 'App/A_iFruits/static/images/src/upload/'
     FILE_NAME = 'file_upload.jpg'
-    DETECTION_THRESHOLD = 0.42
+    DETECTION_THRESHOLD = 0.5
 
 
     if form.validate_on_submit():
