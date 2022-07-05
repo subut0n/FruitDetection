@@ -14,6 +14,7 @@ Homepage
 
 
 <div class="form">
+    {% if not form.file.data %}
     <div class="waviy">
         <span style="--i:1">L</span>
         <span style="--i:2">o</span>
@@ -24,7 +25,10 @@ Homepage
         <span style="--i:7">g</span>
         <span style="--i:8">.</span>
     </div>
+    {% endif %}
+
     <br>
+
     <label for="file"> Load your picture below : </label>
 
     <form method="POST" enctype=multipart/form-data>
@@ -35,20 +39,20 @@ Homepage
 </div>
 
 {% if form.file.data %}
-<h2>Picture predicted and its fun facts</h2>
+<h1 class="animate-title"> Final predictions and score confidence</h1>
 <div class="row-center ">
     <div class="column-equal">
         <img class="img-upload" src="{{url_for('static', filename='/images/src/upload/file_upload.jpg')}}" />
     </div>
 
     <div class="column-equal">
-        <p><b>Details of predictions : </b>
+        <p><h2 class="animate-title">Details of predictions : </h2>
             {% for desc in description %}
             {{ desc }}
             {% endfor %}
             <br><br>
         </p>
-        <p><b>Fun Facts : </b><br>
+        <p><h2 class="animate-title">Fun Facts : </h2><br>
         </p>
         <ul>{% for num in counter %}<br>
             <b>{{ unique_class[num] }} </b>
