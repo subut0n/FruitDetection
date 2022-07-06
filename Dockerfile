@@ -25,4 +25,4 @@ EXPOSE 80
 
 #Run your application in the new "myenv" environment
 
-CMD ["conda", "run", "-n", "fruits2", "python", "app.py"]
+CMD ["conda", "run", "-n", "fruits2", "python", "./app/app.py"]
