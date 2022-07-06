@@ -17,7 +17,7 @@ flask
 WTForms
 Flask-WTF
 python-dotenv
-werkzeug==2.0.3
+Werkzeug==2.0.3
 
 # Logging -------------------------------------
 tensorboard>=2.4.1
