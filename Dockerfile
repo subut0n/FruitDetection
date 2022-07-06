@@ -24,4 +24,6 @@ RUN python -c "import flask"
 EXPOSE 8000
 
 #Run your application in the new "myenv" environment
-CMD ["conda", "run", "-n", "fruits2", "python", "./app/app.py"]
+SHELL ["cd ./app"]
+
+CMD ["conda", "run", "-n", "fruits2", "python", "./app.py"]
