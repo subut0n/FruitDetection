@@ -1,7 +1,6 @@
 import numpy as np 
 import pandas as pd 
 
-
 def return_class_tflite ( image: np.ndarray, detections: list) : # For tflite 
   result_text = []
   for detection in detections:
@@ -13,11 +12,9 @@ def return_class_tflite ( image: np.ndarray, detections: list) : # For tflite
     result_text.append(text)
   return result_text
 
-
 def return_class_yolo(): # Return list o string for predictions 
     pred = []
     import os 
-    print(os.getcwd())
     with open("App/A_iFruits/static/yolov5/runs/detect/yolo_foodex/labels/file_upload.txt","r+") as f :
         for i in f.readlines():
             class_num = i.split()[0]
@@ -26,7 +23,6 @@ def return_class_yolo(): # Return list o string for predictions
             pred.append(operation)
         f.truncate(0) 
     return pred
-
 
 def query_class_name(pred):
     for key, value in labels.items():
