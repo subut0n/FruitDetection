@@ -39,7 +39,7 @@ def return_fun_fact(pred_yolo): # Return list of string for funfact prediction
   unique = list(set(labels))
   funfact_text = []
   for name in unique : 
-      funfact_text.append(df[df.name == name].description.values[0])
+      funfact_text.append(f"{name} : {df[df.name == name].description.values[0]}")
   return funfact_text
 
 
