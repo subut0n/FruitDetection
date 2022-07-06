@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v1
       with:
         registry: https://foodexv1.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_39ffac03bf8a4d3eb98a4d6caff9be51 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_1f5374e1228c4d8db4cd278be4ae5e24 }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_a80c9dc642e44c4abb96ccb4a53aa25e }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_0c21fb2f38c84540bf97240047e1023b }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: foodexv1.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_39ffac03bf8a4d3eb98a4d6caff9be51 }}/foodexv1/foodexv1:${{ github.sha }}
+        tags: foodexv1.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_a80c9dc642e44c4abb96ccb4a53aa25e }}/foodexv1/foodexv1/foodexv1:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'foodexv1'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_d9f002b1eab54c2b82d660ecc4999522 }}
-        images: 'foodexv1.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_39ffac03bf8a4d3eb98a4d6caff9be51 }}/foodexv1/foodexv1:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_bc81a5712d1c43039604ec040444cabd }}
+        images: 'foodexv1.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_a80c9dc642e44c4abb96ccb4a53aa25e }}/foodexv1/foodexv1/foodexv1:${{ github.sha }}'
