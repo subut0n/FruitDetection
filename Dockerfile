@@ -21,7 +21,7 @@ RUN echo "Make sure flask is installed:"
 RUN python -c "import flask"
 
 # exposing port 8050 for interaction with local host
-EXPOSE 80
+EXPOSE 5000
 
 #Run your application in the new "myenv" environment
 
