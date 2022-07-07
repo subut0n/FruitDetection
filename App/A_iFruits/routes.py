@@ -6,8 +6,7 @@ from .forms import uploadFile
 import pandas as pd 
 from .prediction import return_class_yolo, return_fun_fact
 
-execution_path = os.getcwd()
-base_app = execution_path + '/App/A_iFruits/'
+base_app = 'App/A_iFruits/'
 base_model = base_app + 'static/yolov5/'
 
 # Page d'accueil (Description du produit)

@@ -10,5 +10,4 @@ fruits-360-original-size
 *.mp4
 *.jpg
 dataset
-models
 .env
