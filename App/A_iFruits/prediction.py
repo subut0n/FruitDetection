@@ -15,7 +15,10 @@ def return_class_tflite ( image: np.ndarray, detections: list) : # For tflite
 def return_class_yolo(): # Return list o string for predictions 
     pred = []
     import os 
-    with open("App/A_iFruits/static/yolov5/runs/detect/yolo_foodex/labels/file_upload.txt","r+") as f :
+    print('------------------- pred getcwd ------------------------')
+    print()
+    base_app = os.getcwd()
+    with open(f"{base_app}/App/A_iFruits/static/yolov5/runs/detect/yolo_foodex/labels/file_upload.txt","r+") as f :
         for i in f.readlines():
             class_num = i.split()[0]
             class_num = query_class_name(class_num)
