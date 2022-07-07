@@ -1,20 +1,34 @@
-# FruitDetection
 Computer Vision | Agile | Object Detection
 
-You need python 3.7.6 and the right dependencies to run this app. 
-Please foloow this following instructions : 
+# FruitDetection
 
-Run command : 
+Welcom IA learner, 
 
-run : conda create --name <NewEnvName> python==3.7.6 
+Here you can take a pictures about a fruits and our model can predct wich one it is with 65 categories known. 
 
-run : conda activate <NewEnvName>
+Link websites access : 
+  - EfficientNet0 model : https://foodexv0.azurewebsites.net/
+  - Yolo model : https://foodexv1.azurewebsites.net/upload-photo
+  
+  
+----------------------------
 
-run : pip install -r requirements.txt
-(You may need to use cd App if you are not in the good folder)
+For now if you want to use webcam real time mode, you need to deploy it in local  
+
+Please follow this following instructions : 
+
+Command : git clone https://github.com/subut0n/FruitDetection
+
+Command : cd FruitDetection 
+
+Command : docker build --tag foodex .
+
+Command : docker run -d --network=host --device=/dev/video0:/dev/video0 foodex
 
 
-Download the models to this link : 
-https://github.com/OlafenwaMoses/ImageAI/releases/download/essentials-v5/resnet50_coco_best_v2.1.0.h5/
+Wait few seconds and access to the App at your localhost port 8000
+or at this link http://localhost:8080/ 
 
-Save it in the folder : A_iFruits/static/models_files 
+
+----------------------------
+Students by Simplon 
