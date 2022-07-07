@@ -14,7 +14,7 @@ RUN apt-get install ffmpeg libsm6 libxext6 v4l-utils -y
 RUN conda env create --file ./app/conda.yml
 
 # Activate the environment named "myenv" with shell command
-SHELL ["conda", "run", "-n", "fruits2", "/bin/bash", "-c"]
+SHELL ["conda", "run", "-n", "fruits", "/bin/bash", "-c"]
 
 # Make sure the environment is activated by testing if you can import flask or any other package you have in your requirements.yml file
 RUN echo "Make sure flask is installed:"
