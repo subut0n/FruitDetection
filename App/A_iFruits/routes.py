@@ -91,7 +91,7 @@ def predict_live():
 
 
 # Fonction generateur de video 
-def gen(video):
+def gen():
 
     TFLITE_MODEL_PATH = "App/A_iFruits/static/models_files/foodex-v8.tflite" #@param {type:"string"}
     DETECTION_THRESHOLD = 0.48
