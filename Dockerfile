@@ -24,5 +24,5 @@ RUN python -c "import flask"
 EXPOSE 5000
 
 #Run your application in the new "myenv" environment
-
-CMD ["conda", "run", "-n", "fruits2", "python", "./app/app.py"]
+RUN chmod +x ./app/entrypoint.sh
+ENTRYPOINT ["./app/entrypoint.sh"]
