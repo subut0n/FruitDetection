@@ -162,7 +162,7 @@ def predict_live():
 def video_live():   
 
     execution_path = os.getcwd()
-    video = cv2.VideoCapture(0)
+    video = cv2.VideoCapture(-1)
 
     return Response(gen(video),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
