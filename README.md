@@ -7,8 +7,8 @@ Welcom IA learner,
 Here you can take a pictures about a fruits and our model can predct wich one it is with 65 categories known. 
 
 Link websites access : 
-  - EfficientNet0 model : https://foodexv0.azurewebsites.net/
-  - Yolo model : https://foodexv1.azurewebsites.net/upload-photo
+  - EfficientNet0 model with Tensorflow : https://foodexv0.azurewebsites.net/
+  - Yolo model with Pytorch : https://foodexv1.azurewebsites.net/upload-photo
   
   
 ----------------------------
