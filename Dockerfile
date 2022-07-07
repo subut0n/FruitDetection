@@ -21,7 +21,7 @@ RUN echo "Make sure flask is installed:"
 RUN python -c "import flask"
 
 # exposing port 8050 for interaction with local host
-EXPOSE 5000
+EXPOSE 8080
 
 #Run your application in the new "myenv" environment
 RUN chmod +x ./app/entrypoint.sh
