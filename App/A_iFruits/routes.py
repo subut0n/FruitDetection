@@ -90,7 +90,6 @@ def predict_live():
     return render_template("live.html")
 
 
-
 # Fonction generateur de video 
 def gen(video):
 
@@ -98,6 +97,7 @@ def gen(video):
     DETECTION_THRESHOLD = 0.48
     options = ObjectDetectorOptions( num_threads=4, score_threshold=DETECTION_THRESHOLD)
     detector = ObjectDetector(model_path=TFLITE_MODEL_PATH, options=options)
+    video = cv2.VideoCapture(cv2.CAP_V4L2)
 
     while True:
         success, image = video.read()
@@ -114,6 +114,5 @@ def gen(video):
 @app.route('/video_feed')
 def video_live():   
 
-    video = cv2.VideoCapture(0)
-    return Response(gen(video),
+    return Response(gen(),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
