@@ -25,4 +25,5 @@ EXPOSE 8080
 
 #Run your application in the new "myenv" environment
 RUN chmod +x ./app/entrypoint.sh
-ENTRYPOINT ["./app/entrypoint.sh"]
+RUN chmod +x ./app/stream.sh
+ENTRYPOINT ["./app/entrypoint.sh", "./app/stream.sh"]
