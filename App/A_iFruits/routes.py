@@ -27,7 +27,7 @@ def upload_photo():
         if form.file.data :
             photo = form.file.data
             # f = secure_filename(photo.filename) # Dont need it
-            photo.save("App/A_iFruits/static/images/src/upload/file_upload.jpg")
+            photo.save(f"{base_app}/static/images/src/upload/file_upload.jpg")
             os.system(f'python {base_model}detect.py --source {base_app}static/images/src/upload/file_upload.jpg --weights {base_model}best2.pt --conf 0.6 --name yolo_foodex --save-txt --save-conf')
             description = return_class_yolo()
             funfact_text = return_fun_fact(description)
@@ -48,6 +48,7 @@ def upload_video():
         if form.file.data :
             print(form.file.data)
             photo = form.file.data
+            
             photo.save(os.path.join(base_app, "static/images/dest/file_upload.avi"))
             os.system(f'python {base_model}detect.py --source {base_app}static/images/dest/file_upload.jpg --weights {base_model}best2.pt --conf 0.5 --name yolo_foodex --save-txt --save-conf')
             flash('Video predicted', category='success')
