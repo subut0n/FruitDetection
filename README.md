@@ -26,7 +26,7 @@ Command : docker build --tag foodex .
 Command : docker run -d --network=host --device=/dev/video0:/dev/video0 foodex
 
 
-Wait few seconds and access to the App at your localhost port 8000
+Wait few seconds and access to the App at your localhost port 8080
 or at this link http://localhost:8080/ 
 
 
