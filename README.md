@@ -2,7 +2,7 @@ Computer Vision | Agile | Object Detection
 
 # FruitDetection
 
-Welcom IA learner, 
+Welcom AI learner, 
 
 Here you can take a pictures about a fruits and our model can predct wich one it is with 65 categories known. 
 
