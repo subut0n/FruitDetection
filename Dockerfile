@@ -10,7 +10,7 @@ COPY . ./app
 # Run the command inside your image filesystem to create an environment and name it in the requirements.yml file, in this case "myenv"
 RUN apt-get update -y
 RUN apt-get install libusb-1.0-0-dev -y 
-RUN apt-get install ffmpeg libsm6 libxext6 v4l-utils -y
+RUN apt-get install ffmpeg libsm6 libxext6 v4l-utils '^libxcb.*-dev' libx11-xcb-dev libglu1-mesa-dev libxrender-dev libxi-dev libxkbcommon-dev libxkbcommon-x11-dev -y
 RUN conda env create --file ./app/conda.yml
 
 # Activate the environment named "myenv" with shell command

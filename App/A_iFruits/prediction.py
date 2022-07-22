@@ -308,7 +308,6 @@ def return_class_names ( image: np.ndarray, detections: List[Detection]) :
     probability = round(category.score, 2)
     class_name = category.label
     text = class_name + ' (' + str(probability) + ')'
-
     result_text.append(text)
 
   return result_text
