@@ -2,9 +2,9 @@ Computer Vision | Agile | Object Detection
 
 # FruitDetection
 
-Welcom AI learner, 
+Welcome AI learner, 
 
-Here you can take a pictures about a fruits and our model can predct wich one it is with 65 categories known. 
+Here you can take a picture about fruits and our model will predict it between 65 categories ! 
 
 Link websites access : 
   - EfficientNet0 model with Tensorflow : https://foodexv0.azurewebsites.net/
